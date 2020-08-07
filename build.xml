@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<project name="Zhysunny Shell Tools" default="tar">
+
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="build.version" value="1.0.0"/>
+    <property name="final.name" value="shell-tools"/>
+    <property name="final.path" value="${build.dir}/${final.name}"/>
+    <property name="version.file" value="${build.dir}/${final.name}/version.sh"/>
+
+    <target name="tar" depends="clean">
+        <!-- 创建目录 -->
+        <mkdir dir="${build.dir}"></mkdir>
+        <mkdir dir="${final.path}"></mkdir>
+        <copydir src="${basedir}/src/docker" dest="${final.path}/docker"></copydir>
+        <copydir src="${basedir}/src/document" dest="${final.path}/document"></copydir>
+        <copydir src="${basedir}/src/game" dest="${final.path}/game"></copydir>
+        <copydir src="${basedir}/src/test" dest="${final.path}/test"></copydir>
+        <copydir src="${basedir}/src/tools" dest="${final.path}/tools"></copydir>
+        <touch file="${version.file}"></touch>
+        <echo message="version=${build.version};echo $${version}" output="${version.file}"></echo>
+
+        <tar compression="gzip" longfile="gnu" destfile="${build.dir}/${final.name}-${build.version}.tar.gz">
+            <tarfileset dir="${final.path}" filemode="777">
+                <include name="docker/**"/>
+                <include name="document/**"/>
+                <include name="game/**"/>
+                <include name="test/**"/>
+                <include name="tools/**"/>
+                <include name="*.sh"/>
+            </tarfileset>
+        </tar>
+
+        <delete dir="${build.dir}/${final.name}"></delete>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"></delete>
+    </target>
+
+</project>

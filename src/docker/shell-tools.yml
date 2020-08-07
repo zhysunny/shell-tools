@@ -1,0 +1,9 @@
+version: '3'
+services:
+  shell-tools:
+    hostname: shell-tools
+    image: centos7/shell-tools:1.0.0
+    container_name: shell-tools
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /opt/shell/:/opt/shell/
