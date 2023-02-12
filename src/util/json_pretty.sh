@@ -96,13 +96,11 @@ function combining_indent()
     esac
 }
 
-function usage()
-{
-    cat << USAGE
-$0 -f \$json_file
-$0 \$json_str
-USAGE
-    exit 255
+function Usage() {
+    echo "Usage: "
+    echo "sh $0 (json_str)"
+    echo "sh $0 -f (json_file)"
+    exit 1
 }
 
 function json_pretty(){
@@ -112,7 +110,7 @@ function json_pretty(){
     double_quotes=false
     if [[ "$1" == "-f" ]] || [[ "$1" == "--file"  ]];then
         file_name=$2
-        [[ ! -f "${file_name}" ]] && red_message "Can't find the file :${file_name}" && usage
+        [[ ! -f "${file_name}" ]] && red_message "Can't find the file :${file_name}" && Usage
         strings="$(cat ${file_name})"
     else
         strings="$@"
@@ -128,3 +126,4 @@ function json_pretty(){
     echo
 }
 
+json_pretty $*
