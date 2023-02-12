@@ -4,11 +4,11 @@
 if [[ -z "$str" ]]; str为空时返回true
 if [[ -n "$str" ]]; str不为空时返回true
 
-去掉两边的空格
-echo "$str"
-
-字符串长度
-expr length "$str"
+echo "$str"; 去掉两边的空格
+echo ${str#"as"}; 去掉首字符串
+echo ${str%"as"}; 去掉尾字符串
+echo ${str:-"test"}; 默认值为test
+expr length "$str"; 字符串长度
 
 字符串比较
 在bash中"="与"=="是同样的
@@ -30,4 +30,5 @@ indexOf
 expr index "$str" "$s"; 索引从1开始
 substr
 expr substr "$str" $start $len; 
+
 ```
