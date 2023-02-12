@@ -16,7 +16,7 @@
         <copydir src="${basedir}/src/document" dest="${final.path}/document"></copydir>
         <copydir src="${basedir}/src/game" dest="${final.path}/game"></copydir>
         <copydir src="${basedir}/src/test" dest="${final.path}/test"></copydir>
-        <copydir src="${basedir}/src/tools" dest="${final.path}/tools"></copydir>
+        <copydir src="/deploy" dest="${final.path}/tools"></copydir>
         <touch file="${version.file}"></touch>
         <echo message="version=${build.version};echo $${version}" output="${version.file}"></echo>
 
